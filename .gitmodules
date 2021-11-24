@@ -1,3 +1,27 @@
 [submodule "benchmark-tool/shipping"]
 	path = benchmark-tool/shipping
 	url = https://github.com/microservices-demo/shipping
+[submodule "benchmark-tool/catalogue"]
+	path = benchmark-tool/catalogue
+	url = https://github.com/microservices-demo/catalogue
+[submodule "benchmark-tool/orders"]
+	path = benchmark-tool/orders
+	url = https://github.com/microservices-demo/orders
+[submodule "benchmark-tool/front-end"]
+	path = benchmark-tool/front-end
+	url = https://github.com/microservices-demo/front-end
+[submodule "benchmark-tool/user"]
+	path = benchmark-tool/user
+	url = https://github.com/microservices-demo/user
+[submodule "benchmark-tool/carts"]
+	path = benchmark-tool/carts
+	url = https://github.com/microservices-demo/carts
+[submodule "benchmark-tool/queue-master"]
+	path = benchmark-tool/queue-master
+	url = https://github.com/microservices-demo/queue-master
+[submodule "benchmark-tool/payment"]
+	path = benchmark-tool/payment
+	url = https://github.com/microservices-demo/payment
+[submodule "benchmark-tool/microservices-demo"]
+	path = benchmark-tool/microservices-demo
+	url = https://github.com/microservices-demo/microservices-demo
