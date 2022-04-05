@@ -1,0 +1,3 @@
+[submodule "benchmark-tool/microservices-demo"]
+	path = benchmark-tool/microservices-demo
+	url = https://github.com/microservices-demo/microservices-demo
