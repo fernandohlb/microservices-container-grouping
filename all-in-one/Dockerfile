@@ -1,5 +1,9 @@
 FROM openjdk:8
 
+ENV HATEAOS user
+ENV USER_DATABASE mongodb
+ENV MONGO_HOST user-db
+ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
 #Instala o supervisord
 # RUN apt-get update && apt-get install supervisor -y && \
 #   mkdir -p /var/log/supervisor && \
@@ -16,5 +20,5 @@ COPY scripts/run-apps-all-in-one.sh /usr/src/scripts/
 
 #Copia a aplicação front-end para o diretorio de aplicações
 #COPY ./front-end /usr/src/app/front-end
-EXPOSE 80 8080-8082
+EXPOSE 80 8080-8085
 CMD ["sh","scripts/run-apps-all-in-one.sh"]
