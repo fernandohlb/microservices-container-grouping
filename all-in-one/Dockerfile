@@ -20,5 +20,5 @@ COPY scripts/run-apps-all-in-one.sh /usr/src/scripts/
 
 #Copia a aplicação front-end para o diretorio de aplicações
 #COPY ./front-end /usr/src/app/front-end
-EXPOSE 80 8080-8085
+EXPOSE 80 8081-8086
 CMD ["sh","scripts/run-apps-all-in-one.sh"]

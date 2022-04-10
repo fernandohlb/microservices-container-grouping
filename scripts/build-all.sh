@@ -146,3 +146,26 @@ cp user $HOME/Documentos/Dev/microservices-container-grouping/$BIN_DIR
 # echo $HOME
 # cp user $HOME/Documentos/Dev/microservices-container-grouping/$BIN_DIR
 cd $HOME/Documentos/Dev/microservices-container-grouping/scripts/
+
+
+echo '##########FRONT-END MICROSERVICE##############'
+NAME=front-end
+TAG=0.1.1
+FILE=$TAG.zip
+COMPLETE_FILE_NAME=$NAME'-'$FILE
+REPO=https://github.com/microservices-demo/$NAME/archive/refs/tags/$FILE
+cd ../repos/
+if [ -e "$COMPLETE_FILE_NAME" ] ; then
+echo "The Front-End Microservice was previously downloaded"
+else
+echo 'Downloading Microservice localy'
+wget $REPO -O $COMPLETE_FILE_NAME
+echo 'Unzip Microservice Folder'
+unzip $COMPLETE_FILE_NAME
+fi
+# SCRIPT_DIR=$NAME'-'$TAG'/'
+# echo 'Microservice Folder: ' $SCRIPT_DIR
+# echo 'Building Queue Microservice...'
+# mvn -f $SCRIPT_DIR -q -DskipTests package
+# echo 'Coping Binary to bin folder...'
+# cp $SCRIPT_DIR/target/*.jar ..$BIN_DIR
