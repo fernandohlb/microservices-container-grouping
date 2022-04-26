@@ -1,26 +1,27 @@
 
 #!/bin/bash
 
-#Start cart app
-
-
-# Start the Carts microservice
+#Start the Carts microservice
 java -jar bin/carts.jar --port=8081 &
   
-# # Start the Orders microservice
+#Start the Orders microservice
 java -jar bin/orders.jar --port=8082 &
 
-# # # Start the Shipping microservice
+#Start the Shipping microservice
 java -jar bin/shipping.jar --port=8083 &
 
-# # #Start Catalogue microservice
+#Start Catalogue microservice
 ./bin/catalogue -port=8084 &
 
-# # #Start Payment microservice
+#Start Payment microservice
 ./bin/payment -port=8085 &
 
-# #Start User microservice
-./bin/user -port=8086
+#Start User microservice
+./bin/user -port=8086 &
+
+#Start FrontEnd Microservice
+npm start --prefix bin/front-end
+
   
 # Wait for any process to exit
 #wait -n

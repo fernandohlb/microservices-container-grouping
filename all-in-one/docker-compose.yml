@@ -1,21 +1,11 @@
 version: '2'
 
 services:
-  front-end:
-    image: weaveworksdemos/front-end:0.3.12
-    hostname: front-end
-    restart: always
-    cap_drop:
-      - all
-    read_only: true
-    labels:
-      # Enable public access
-      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
-      - "traefik.http.services.frontend.loadbalancer.server.port=8079"
+  
   proxy:
     image: traefik:v2.4.2
     command:
-      # - "--log.level=DEBUG"
+      - "--log.level=DEBUG"
       - "--api=true"
       - "--api.dashboard=true"
       - "--api.insecure=true" # Don't do that in production
@@ -35,24 +25,7 @@ services:
             published: 8080
             protocol: tcp
             mode: host
-  # edge-router:
-  #   image: weaveworksdemos/edge-router:0.1.1
-  #   ports:
-  #     - '80:80'
-  #     - '8080:8080'
-  #   cap_drop:
-  #     - all
-  #   cap_add:
-  #     - NET_BIND_SERVICE
-  #     - CHOWN
-  #     - SETGID
-  #     - SETUID
-  #     - DAC_OVERRIDE
-  #   read_only: true
-  #   tmpfs:
-  #     - /var/run:rw,noexec,nosuid
-  #   hostname: edge-router
-  #   restart: always
+  
   all-in-one:
     image: teste
     ports:      
@@ -62,19 +35,19 @@ services:
       - "8084:8084"
       - "8085:8085"
       - "8086:8086"
+      - "8079:8079"
     cap_drop:
       - all
     cap_add:
       - NET_BIND_SERVICE
     read_only: true
     labels:
-      - "traefik.http.routers.catalogue.rule=PathPrefix(`/catalogue/`)"
-      - "traefik.http.services.catalogue.loadbalancer.server.port=8084"
-      - "traefik.http.routers.cart.rule=PathPrefix(`/cart/`)"
-      - "traefik.http.services.cart.loadbalancer.server.port=8081"
+      # Enable public access
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.services.frontend.loadbalancer.server.port=8079"
     environment:
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
       - MONGO_HOST=user-db:27017
-      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false          
     tmpfs:
       - /tmp:rw,noexec,nosuid
   catalogue-db:

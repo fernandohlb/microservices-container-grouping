@@ -129,6 +129,7 @@ cp -R images/ $HOME/Documentos/Dev/microservices-container-grouping/$BIN_DIR
 cd $HOME/Documentos/Dev/microservices-container-grouping/scripts/
 
 echo '##########USER MICROSERVICE##############'
+TAG=0.4.7
 SCRIPT_DIR='github.com/microservices-demo/user'
 echo 'Microservice Folder: ' $SCRIPT_DIR
 echo 'Copying Microservice Folder to GOPATH'
@@ -136,6 +137,7 @@ go get -u $SCRIPT_DIR
 echo 'Restore Dependencies'
 go get -v github.com/Masterminds/glide
 cd $GOPATH/src/github.com/microservices-demo/user/
+git checkout $TAG
 $GOPATH/bin/glide install
 echo 'Building Native Go Microservice...'
 go install
@@ -143,15 +145,13 @@ cd $GOPATH/bin/
 chmod +x user
 echo 'Coping Bynary to bin folder...'
 cp user $HOME/Documentos/Dev/microservices-container-grouping/$BIN_DIR
-# echo $HOME
-# cp user $HOME/Documentos/Dev/microservices-container-grouping/$BIN_DIR
 cd $HOME/Documentos/Dev/microservices-container-grouping/scripts/
 
 
 echo '##########FRONT-END MICROSERVICE##############'
 NAME=front-end
 TAG=0.1.1
-FILE=$TAG.zip
+FILE=v$TAG.zip
 COMPLETE_FILE_NAME=$NAME'-'$FILE
 REPO=https://github.com/microservices-demo/$NAME/archive/refs/tags/$FILE
 cd ../repos/
@@ -163,9 +163,10 @@ wget $REPO -O $COMPLETE_FILE_NAME
 echo 'Unzip Microservice Folder'
 unzip $COMPLETE_FILE_NAME
 fi
-# SCRIPT_DIR=$NAME'-'$TAG'/'
-# echo 'Microservice Folder: ' $SCRIPT_DIR
-# echo 'Building Queue Microservice...'
-# mvn -f $SCRIPT_DIR -q -DskipTests package
-# echo 'Coping Binary to bin folder...'
-# cp $SCRIPT_DIR/target/*.jar ..$BIN_DIR
+SCRIPT_DIR=$NAME'-'$TAG'/'
+echo 'Microservice Folder: ' $SCRIPT_DIR
+echo 'Replace Endpoints in Front-End Microservice'
+cat ../all-in-one/endpoints.js > ../repos/$SCRIPT_DIR/api/endpoints.js
+echo 'Coping Front-End Microservice to Binary Folder...'
+cp -rf $SCRIPT_DIR ..$BIN_DIR
+mv ..$BIN_DIR/$SCRIPT_DIR ..$BIN_DIR/$NAME
