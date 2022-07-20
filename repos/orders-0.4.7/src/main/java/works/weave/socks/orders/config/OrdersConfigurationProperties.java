@@ -1,6 +1,8 @@
 package works.weave.socks.orders.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 
 import java.net.URI;
 
@@ -8,12 +10,17 @@ import java.net.URI;
 public class OrdersConfigurationProperties {
     private String domain = "";
 
+    @Autowired
+    private Environment env;
+
     public URI getPaymentUri() {
-        return new ServiceUri(new Hostname("localhost:8085"), new Domain(domain), "/paymentAuth").toUri();
+        String hostname = env.getProperty("hostname.payment");
+        return new ServiceUri(new Hostname(hostname), new Domain(domain), "/paymentAuth").toUri();
     }
 
     public URI getShippingUri() {
-        return new ServiceUri(new Hostname("localhost:8083"), new Domain(domain), "/shipping").toUri();
+        String hostname = env.getProperty("hostname.shipping");
+        return new ServiceUri(new Hostname(hostname), new Domain(domain), "/shipping").toUri();
     }
 
     public void setDomain(String domain) {
