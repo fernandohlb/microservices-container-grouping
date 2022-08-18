@@ -1,5 +1,5 @@
 echo 'Build all-in-one docker'
-docker build -f all-in-one/Dockerfile -t buzatof/all-in-one .
+docker build -f Dockerfile -t buzatof/all-in-one .
 docker push buzatof/all-in-one:latest
 
 # echo 'Build by-stack-jvm docker'

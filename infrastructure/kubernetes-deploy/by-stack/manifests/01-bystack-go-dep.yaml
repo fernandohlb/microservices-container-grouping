@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: by-stack-go
+  labels:
+    name: by-stack-go
+  namespace: sock-shop-by-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: by-stack-go
+  template:
+    metadata:
+      labels:
+        name: by-stack-go
+    spec:
+      containers:
+      - name: bystackgo
+        image: buzatof/by-stack-go
+        env:
+          - name: ZIPKIN
+            value: zipkin.jaeger.svc.cluster.local
+          - name: MONGO_HOST
+            value: user-db:27017
+          - name: mongo
+            value: user-db:27017            
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+        namespace: sock-shop-by-stack

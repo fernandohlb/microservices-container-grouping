@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  benchmark:
+    image: locustio/locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py
+  allinone:
+    image: locustio/locust
+    ports:
+     - "8090:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py

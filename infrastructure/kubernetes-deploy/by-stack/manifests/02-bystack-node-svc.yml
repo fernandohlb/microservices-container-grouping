@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: by-stack-node
+  annotations:
+        prometheus.io/scrape: 'true'
+  labels:
+    name: by-stack-node
+  namespace: sock-shop-by-stack
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+  - name: front-end
+    port: 80
+    targetPort: 8079
+    nodePort: 30201
+  selector:
+    name: by-stack-node
