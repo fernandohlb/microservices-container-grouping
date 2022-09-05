@@ -174,6 +174,6 @@ COPY --from=build-go /go/bin/images /usr/src/images/
 COPY --from=build-front /repos/front-end /usr/src/bin/front-end
 COPY run-apps-all-in-one.sh /usr/src/scripts/
 
-EXPOSE 80 8079-8086
+EXPOSE 80 8079-8087
 CMD ["sh","scripts/run-apps-all-in-one.sh"]
 #CMD sh

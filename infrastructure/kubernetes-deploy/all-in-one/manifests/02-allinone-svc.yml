@@ -40,5 +40,9 @@ spec:
     port: 8086
     targetPort: 8086
     nodePort: 30107
+  - name: queue-master
+    port: 8087
+    targetPort: 8087
+    nodePort: 30108
   selector:
     name: all-in-one
