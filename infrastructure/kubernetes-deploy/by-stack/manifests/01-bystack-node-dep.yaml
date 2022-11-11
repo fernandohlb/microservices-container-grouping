@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: by-stack-node
+  labels:
+    name: by-stack-node
+  namespace: by-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: by-stack-node
+  template:
+    metadata:
+      labels:
+        name: by-stack-node
+    spec:
+      containers:
+      - name: bystacknode
+        image: buzatof/by-stack-node
+        env:
+          - name: SESSION_REDIS
+            value: "true"
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

@@ -1,0 +1,36 @@
+FROM node:10-alpine as build-front
+
+#Build Front-End
+ARG NAME=front-end
+ARG TAG=0.3.12
+ENV FILE=${TAG}.zip
+ENV COMPLETE_FILE_NAME=${NAME}'-'${FILE}
+ARG REPO_ROOT=https://github.com/microservices-demo/ \
+    REPO_ARCHIVE_PATH=/archive/refs/tags/
+ENV REPO=${REPO_ROOT}${NAME}${REPO_ARCHIVE_PATH}${FILE}
+ENV SCRIPT_DIR=${NAME}'-'${TAG}'/'
+ENV BIN_DIR='/repos/bin'   
+
+RUN mkdir repos
+RUN cd repos && wget ${REPO} -O ${COMPLETE_FILE_NAME} && unzip ${COMPLETE_FILE_NAME}
+RUN cd repos/${SCRIPT_DIR} && npm install
+RUN mv repos/${SCRIPT_DIR} repos/${NAME}
+COPY endpoints.js /repos/${NAME}/api
+COPY customer-orders.html /repos/${NAME}/public
+
+
+FROM node:10-alpine
+
+ENV NODE_ENV "production"
+ENV PORT 8079
+
+
+#Cria o diretório base do container
+WORKDIR /usr/src/
+
+#Copia os binários das aplicações para o diretorio base
+COPY --from=build-front /repos/front-end /usr/src/bin/front-end
+COPY run-apps-node.sh /usr/src/scripts/
+
+EXPOSE 8079
+CMD ["sh","scripts/run-apps-node.sh"]
