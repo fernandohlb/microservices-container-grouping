@@ -5,7 +5,9 @@ metadata:
   name: catalogue-db
   labels:
     name: catalogue-db
-  namespace: sock-shop
+    app: catalogue-db
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on

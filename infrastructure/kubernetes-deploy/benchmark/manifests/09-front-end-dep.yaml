@@ -3,7 +3,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-end
-  namespace: sock-shop
+  labels:
+    name: front-end
+    app: front-end
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -38,16 +42,22 @@ spec:
           readOnlyRootFilesystem: true
         livenessProbe:
           httpGet:
-            path: /
+            path: /metrics
             port: 8079
           initialDelaySeconds: 300
           periodSeconds: 3
         readinessProbe:
           httpGet:
-            path: /
+            path: /metrics
             port: 8079
           initialDelaySeconds: 30
           periodSeconds: 3
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"
+

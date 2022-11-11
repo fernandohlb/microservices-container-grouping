@@ -5,7 +5,9 @@ metadata:
   name: user
   labels:
     name: user
-  namespace: sock-shop
+    app: user
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -53,5 +55,11 @@ spec:
           initialDelaySeconds: 180
           periodSeconds: 3
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"
+

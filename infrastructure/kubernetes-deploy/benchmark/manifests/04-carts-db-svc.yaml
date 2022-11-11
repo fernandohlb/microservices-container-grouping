@@ -5,7 +5,9 @@ metadata:
   name: carts-db
   labels:
     name: carts-db
-  namespace: sock-shop
+    app: carts-db
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on

@@ -5,7 +5,9 @@ metadata:
   name: rabbitmq
   labels:
     name: rabbitmq
-  namespace: sock-shop
+    app: rabbitmq
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -42,5 +44,11 @@ spec:
         - containerPort: 9090
           name: exporter
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"
+

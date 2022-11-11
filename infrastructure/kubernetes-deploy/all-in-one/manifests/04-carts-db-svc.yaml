@@ -5,7 +5,7 @@ metadata:
   name: carts-db
   labels:
     name: carts-db
-  namespace: sock-shop-all-in-one
+  namespace: all-in-one
 spec:
   ports:
     # the port that this service should serve on

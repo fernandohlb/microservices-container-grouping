@@ -5,7 +5,7 @@ metadata:
   name: carts
   labels:
     name: carts
-  namespace: sock-shop-by-dependencies
+  namespace: by-dependencies
 spec:
   replicas: 1
   selector:
@@ -48,5 +48,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-dependencies
+        kubernetes.io/os: linux
+        namespace: by-dependencies
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-dependencies"
+          effect: "NoSchedule"

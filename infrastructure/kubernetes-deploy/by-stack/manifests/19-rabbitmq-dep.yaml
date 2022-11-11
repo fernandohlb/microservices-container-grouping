@@ -5,7 +5,7 @@ metadata:
   name: rabbitmq
   labels:
     name: rabbitmq
-  namespace: sock-shop-by-stack
+  namespace: by-stack
 spec:
   replicas: 1
   selector:
@@ -42,5 +42,10 @@ spec:
         - containerPort: 9090
           name: exporter
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-stack
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

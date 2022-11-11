@@ -5,7 +5,9 @@ metadata:
   name: user-db
   labels:
     name: user-db
-  namespace: sock-shop
+    app: user-db
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on

@@ -5,7 +5,7 @@ metadata:
   name: user-db
   labels:
     name: user-db
-  namespace: sock-shop-all-in-one
+  namespace: all-in-one
 spec:
   replicas: 1
   selector:
@@ -40,5 +40,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-all-in-one
+        kubernetes.io/os: linux
+        namespace: all-in-one
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "all-in-one"
+          effect: "NoSchedule"

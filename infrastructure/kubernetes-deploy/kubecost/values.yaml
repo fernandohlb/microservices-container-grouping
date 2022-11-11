@@ -1,0 +1,13 @@
+# kubectl create namespace kubecost
+# helm repo add kubecost https://kubecost.github.io/cost-analyzer/
+# helm install kubecost kubecost/cost-analyzer --namespace kubecost --set kubecostToken="ZmJ1emF0b0BpbWUudXNwLmJyxm343yadf98" --values values.yaml
+# helm install kubecost/cost-analyzer --name kubecost --values values.yaml
+
+networkCosts:
+  enabled: true
+#  podMonitor: 
+#    enabled: true
+grafana:
+  sidecar:
+    dashboards:
+      enabled: true

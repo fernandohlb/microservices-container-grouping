@@ -7,7 +7,9 @@ metadata:
         prometheus.io/scrape: 'true'
   labels:
     name: front-end
-  namespace: sock-shop
+    app: front-end
+    product: benchmark
+  namespace: benchmark
 spec:
   type: NodePort
   ports:

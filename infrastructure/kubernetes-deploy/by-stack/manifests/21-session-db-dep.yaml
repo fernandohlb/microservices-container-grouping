@@ -5,7 +5,7 @@ metadata:
   name: session-db
   labels:
     name: session-db
-  namespace: sock-shop-by-stack
+  namespace: by-stack
 spec:
   replicas: 1
   selector:
@@ -34,5 +34,10 @@ spec:
               - SETUID
           readOnlyRootFilesystem: true
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-stack
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

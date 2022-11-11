@@ -164,6 +164,12 @@ ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
 RUN apt-get update && apt-get install nodejs -y
 RUN apt-get install npm -y
 
+#Instala o supervisord
+# RUN apt-get install supervisor -y && \
+#   mkdir -p /var/log/supervisor && \
+#   mkdir -p /etc/supervisor/conf.d
+# ADD supervisor.conf /etc/supervisor.conf
+
 #Cria o diretório base do container
 WORKDIR /usr/src/
 
@@ -175,5 +181,6 @@ COPY --from=build-front /repos/front-end /usr/src/bin/front-end
 COPY run-apps-all-in-one.sh /usr/src/scripts/
 
 EXPOSE 80 8079-8087
+#CMD ["supervisord", "-c", "/etc/supervisor.conf"]
 CMD ["sh","scripts/run-apps-all-in-one.sh"]
 #CMD sh

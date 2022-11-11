@@ -5,7 +5,9 @@ metadata:
   name: orders-db
   labels:
     name: orders-db
-  namespace: sock-shop
+    app: orders-db
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on

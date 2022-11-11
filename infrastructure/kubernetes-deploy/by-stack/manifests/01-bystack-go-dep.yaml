@@ -5,7 +5,7 @@ metadata:
   name: by-stack-go
   labels:
     name: by-stack-go
-  namespace: sock-shop-by-stack
+  namespace: by-stack
 spec:
   replicas: 1
   selector:
@@ -28,10 +28,10 @@ spec:
             value: user-db:27017            
         resources:
           limits:
-            cpu: 500m
-            memory: 1000Mi
+            cpu: 300m
+            memory: 600Mi
           requests:
-            cpu: 100m
+            cpu: 299m
             memory: 300Mi
         ports:
         - containerPort: 80
@@ -52,5 +52,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-stack
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

@@ -7,7 +7,7 @@ metadata:
         prometheus.io/scrape: 'true'
   labels:
     name: by-stack-go
-  namespace: sock-shop-by-stack
+  namespace: by-stack
 spec:
   type: NodePort
   ports:

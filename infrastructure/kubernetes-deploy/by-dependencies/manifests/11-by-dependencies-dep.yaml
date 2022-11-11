@@ -5,7 +5,7 @@ metadata:
   name: by-dependencies
   labels:
     name: by-dependencies
-  namespace: sock-shop-by-dependencies
+  namespace: by-dependencies
 spec:
   replicas: 1
   selector:
@@ -29,8 +29,15 @@ spec:
             cpu: 500m
             memory: 1000Mi
           requests:
-            cpu: 100m
-            memory: 300Mi
+            cpu: 299m
+            memory: 700Mi
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8082          
+          httpGet:
+            path: /health
+            port: 8083          
         ports:
         - containerPort: 80
         securityContext:
@@ -50,5 +57,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-dependencies
+        kubernetes.io/os: linux
+        namespace: by-dependencies
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-dependencies"
+          effect: "NoSchedule"

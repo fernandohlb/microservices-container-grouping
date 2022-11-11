@@ -5,7 +5,9 @@ metadata:
   name: session-db
   labels:
     name: session-db
-  namespace: sock-shop
+    app: session-db
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on

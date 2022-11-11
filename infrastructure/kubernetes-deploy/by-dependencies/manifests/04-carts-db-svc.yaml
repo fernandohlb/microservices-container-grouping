@@ -5,7 +5,7 @@ metadata:
   name: carts-db
   labels:
     name: carts-db
-  namespace: sock-shop-by-dependencies
+  namespace: by-dependencies
 spec:
   ports:
     # the port that this service should serve on

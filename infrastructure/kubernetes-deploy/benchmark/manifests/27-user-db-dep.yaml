@@ -5,7 +5,9 @@ metadata:
   name: user-db
   labels:
     name: user-db
-  namespace: sock-shop
+    app: user-db
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -40,5 +42,11 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"
+

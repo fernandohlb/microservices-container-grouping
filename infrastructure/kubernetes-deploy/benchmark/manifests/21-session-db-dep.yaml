@@ -5,7 +5,9 @@ metadata:
   name: session-db
   labels:
     name: session-db
-  namespace: sock-shop
+    app: session-db
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -34,5 +36,11 @@ spec:
               - SETUID
           readOnlyRootFilesystem: true
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"
+

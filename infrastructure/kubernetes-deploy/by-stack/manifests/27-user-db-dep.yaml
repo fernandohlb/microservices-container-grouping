@@ -5,7 +5,7 @@ metadata:
   name: user-db
   labels:
     name: user-db
-  namespace: sock-shop-by-stack
+  namespace: by-stack
 spec:
   replicas: 1
   selector:
@@ -40,5 +40,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-stack
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

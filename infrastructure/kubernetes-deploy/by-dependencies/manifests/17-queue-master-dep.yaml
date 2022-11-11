@@ -5,7 +5,7 @@ metadata:
   name: queue-master
   labels:
     name: queue-master
-  namespace: sock-shop-by-dependencies
+  namespace: by-dependencies
 spec:
   replicas: 1
   selector:
@@ -32,5 +32,10 @@ spec:
         ports:
         - containerPort: 80
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop-by-dependencies
+        kubernetes.io/os: linux
+        namespace: by-dependencies
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-dependencies"
+          effect: "NoSchedule"

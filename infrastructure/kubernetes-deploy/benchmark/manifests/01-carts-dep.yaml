@@ -5,7 +5,9 @@ metadata:
   name: carts
   labels:
     name: carts
-  namespace: sock-shop
+    app: carts
+    product: benchmark
+  namespace: benchmark
 spec:
   replicas: 1
   selector:
@@ -48,5 +50,10 @@ spec:
           emptyDir:
             medium: Memory
       nodeSelector:
-        beta.kubernetes.io/os: linux
-        namespace: sock-shop
+        kubernetes.io/os: linux
+        namespace: benchmark
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "benchmark"
+          effect: "NoSchedule"

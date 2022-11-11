@@ -52,3 +52,9 @@ spec:
       nodeSelector:
         beta.kubernetes.io/os: linux
         namespace: monitoring
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "monitoring"
+          effect: "NoSchedule"
+

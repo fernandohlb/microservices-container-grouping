@@ -42,4 +42,9 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
         namespace: monitoring
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "monitoring"
+          effect: "NoSchedule"
       serviceAccountName: kube-state-metrics

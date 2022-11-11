@@ -7,7 +7,7 @@ metadata:
         prometheus.io/scrape: 'true'
   labels:
     name: all-in-one
-  namespace: sock-shop-all-in-one
+  namespace: all-in-one
 spec:
   type: NodePort
   ports:

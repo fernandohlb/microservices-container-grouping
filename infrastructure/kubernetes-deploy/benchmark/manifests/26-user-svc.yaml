@@ -7,7 +7,9 @@ metadata:
         prometheus.io/scrape: 'true'
   labels:
     name: user
-  namespace: sock-shop
+    app: user
+    product: benchmark
+  namespace: benchmark
 spec:
   ports:
     # the port that this service should serve on
