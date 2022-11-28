@@ -1,5 +1,5 @@
 echo 'Get Cost Before Test'
-kubectl cost namespace --show-all-resources --window 2022-11-04T20:00:00Z,2022-11-04T21:00:00Z > cost_result_before.csv
+kubectl cost namespace --show-all-resources --window 2022-11-19T22:00:01Z,2022-11-19T23:00:00Z > cost_result_before.csv
 echo '########## Benchmark Test 01 user 01 spawn rate 10 minutes ##########'
 
 scp -i ~/.ssh/deploy-docs-k8s.pem -o StrictHostKeyChecking=no benchmark/locust.conf ec2-user@ec2-15-228-45-208.sa-east-1.compute.amazonaws.com:/tmp
@@ -58,4 +58,4 @@ scp -i ~/.ssh/deploy-docs-k8s.pem ec2-user@ec2-15-228-45-208.sa-east-1.compute.a
 echo '########## By-Dependencies Test 01 user 01 spawn rate 10 minutes finished ##########'
 sleep 18m
 echo 'Get Cost After Test'
-kubectl cost namespace --show-all-resources --window 2022-11-04T21:00:00Z,2022-11-04T22:00:00Z > cost_result_after.csv
+kubectl cost namespace --show-all-resources --window 2022-11-19T23:00:01Z,2022-11-19T24:00:00Z > cost_result_after.csv

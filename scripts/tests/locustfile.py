@@ -2,6 +2,7 @@ import base64
 
 from locust import HttpUser, task
 from random import randint, choice
+import json
 
 
 class BanchmarkLoadTest(HttpUser):
@@ -10,7 +11,10 @@ class BanchmarkLoadTest(HttpUser):
     @task
     def load_test(self):
         
-        usrPass = "user:password"
+        users = '[{"id":"user:password"}, {"id":"user1:password"}, {"id":"Eve_Berger:eve"}]'
+        users_object = json.loads(users)
+
+        usrPass = choice(users_object)["id"]
         encoded_u = base64.b64encode(usrPass.encode()).decode()
         #base64string = base64.encodestring('%s:%s' % ('user', 'password')).replace('\n', '')
 
