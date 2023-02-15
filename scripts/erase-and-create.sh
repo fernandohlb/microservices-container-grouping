@@ -1,16 +1,43 @@
 echo 'Delete all Namespaces'
+date --utc +%Y%m%d_%H:%M:%SZ
 kubectl delete namespace benchmark
 kubectl delete namespace all-in-one
 kubectl delete namespace by-stack
 kubectl delete namespace by-dependencies
 
-sleep 5m
-
 echo 'Create all Namespaces'
+date --utc +%Y%m%d_%H:%M:%SZ
 kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/
 kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/
 kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/
 kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/
+sleep 5m
+
+echo 'Create Users in Databases'
+date --utc +%Y%m%d_%H:%M:%SZ
+kubectl port-forward -n benchmark deployment/user-db 27017 & 
+
+sleep 10s
+sh db/mongo_create_insert.sh
+pkill kubectl -9
+
+kubectl port-forward -n all-in-one deployment/user-db 27017 & 
+
+sleep 10s
+sh db/mongo_create_insert.sh
+pkill kubectl -9
+
+kubectl port-forward -n by-stack deployment/user-db 27017 & 
+
+sleep 10s
+sh db/mongo_create_insert.sh
+pkill kubectl -9
+
+kubectl port-forward -n by-dependencies deployment/user-db 27017 & 
+
+sleep 10s
+sh db/mongo_create_insert.sh
+pkill kubectl -9
 
 echo 'Scenarios created at: '
 date --utc +%Y%m%d_%H:%M:%SZ
