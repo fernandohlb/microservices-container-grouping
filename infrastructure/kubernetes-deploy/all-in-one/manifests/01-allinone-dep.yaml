@@ -32,11 +32,17 @@ spec:
             value: "true"
         resources:
           limits:
-            cpu: 1080m
-            memory: 2000Mi
+            cpu: 3900m
+            memory: 3800Mi
           requests:
             cpu: 799m
             memory: 1700Mi
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 8079
+          initialDelaySeconds: 300
+          timeoutSeconds: 3
         readinessProbe:
           httpGet:
             path: /health
@@ -49,7 +55,12 @@ spec:
             port: 8083          
           httpGet:
             path: /health
-            port: 8087          
+            port: 8087    
+          httpGet:
+            path: /metrics
+            port: 8079
+          initialDelaySeconds: 180
+          timeoutSeconds: 3
         ports:
         - containerPort: 80
         securityContext:

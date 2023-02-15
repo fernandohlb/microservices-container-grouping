@@ -23,7 +23,7 @@ spec:
         image: weaveworksdemos/front-end:0.3.12
         resources:
           limits:
-            cpu: 300m
+            cpu: 900m
             memory: 1000Mi
           requests:
             cpu: 100m
@@ -45,13 +45,13 @@ spec:
             path: /metrics
             port: 8079
           initialDelaySeconds: 300
-          periodSeconds: 3
+          timeoutSeconds: 3
         readinessProbe:
           httpGet:
             path: /metrics
             port: 8079
-          initialDelaySeconds: 30
-          periodSeconds: 3
+          initialDelaySeconds: 180
+          timeoutSeconds: 3
       nodeSelector:
         kubernetes.io/os: linux
         namespace: benchmark

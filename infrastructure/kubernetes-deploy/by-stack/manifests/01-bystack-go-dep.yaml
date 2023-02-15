@@ -28,7 +28,7 @@ spec:
             value: user-db:27017            
         resources:
           limits:
-            cpu: 300m
+            cpu: 700m
             memory: 600Mi
           requests:
             cpu: 299m

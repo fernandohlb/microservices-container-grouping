@@ -1,5 +1,5 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: load-test-master
   labels:
@@ -7,11 +7,11 @@ metadata:
     app: load-test-master
   namespace: load-test
 spec:
-  # replicas: 1
-  # selector:
-  #   matchLabels:
-  #     role: load-test-master
-  #     app: load-test-master
+  replicas: 1
+  selector:
+    matchLabels:
+      role: load-test-master
+      app: load-test-master
   #ttlSecondsAfterFinished: 1
   template:
     metadata:
@@ -38,7 +38,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
-      restartPolicy: Never
+      restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 10
       volumes:
