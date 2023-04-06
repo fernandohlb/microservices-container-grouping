@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: by-stack-node
+  labels:
+    name: front-end
+    app: front-end
+    product: by-stack-node
+  namespace: by-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: by-stack-node
+  template:
+    metadata:
+      labels:
+        name: by-stack-node
+        department: by-stack
+    spec:
+      containers:
+      - name: bystacknode
+        image: buzatof/by-stack-node
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1100Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        ports:
+        - containerPort: 8079
+        env:
+        - name: SESSION_REDIS
+          value: "true"        
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+          readOnlyRootFilesystem: true
+        readinessProbe:
+          httpGet:
+             path: /metrics
+             port: 8079
+          periodSeconds: 30
+          timeoutSeconds: 120
+          failureThreshold: 10
+          initialDelaySeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 8079
+          initialDelaySeconds: 300
+          timeoutSeconds: 120
+        # readinessProbe:
+        #   httpGet:
+        #     path: /metrics
+        #     port: 8079
+        #   initialDelaySeconds: 180
+          # timeoutSeconds: 3
+      nodeSelector:
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

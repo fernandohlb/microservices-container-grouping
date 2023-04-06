@@ -132,7 +132,7 @@ RUN cd /go/src/github.com/microservices-demo/${NAME}/ && glide install
 RUN cd /go/src/github.com/microservices-demo/${NAME}/ && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o ${NAME}
 RUN cp /go/src/github.com/microservices-demo/${NAME}/${NAME} /go/bin
 
-FROM node:10-alpine as build-front
+FROM node:6-alpine as build-front
 
 #Build Front-End
 ARG NAME=front-end
@@ -153,16 +153,15 @@ COPY endpoints.js /repos/${NAME}/api
 COPY customer-orders.html /repos/${NAME}/public
 
 
-FROM openjdk:8
+FROM node:6-alpine
+ENV NODE_ENV "production"
 ENV HATEAOS localhost:8086
 ENV USER_DATABASE mongodb
 ENV MONGO_HOST user-db
 ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
 
-
-#Instala o NodeJS para executar o Front-End
-RUN apt-get update && apt-get install nodejs -y
-RUN apt-get install npm -y
+#Instala o Java no container
+RUN apk update && apk add openjdk8
 
 #Instala o supervisord
 # RUN apt-get install supervisor -y && \

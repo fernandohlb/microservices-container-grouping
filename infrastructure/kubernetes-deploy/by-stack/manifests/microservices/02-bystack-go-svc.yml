@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: by-stack-go
+  annotations:
+        prometheus.io/scrape: 'true'
+  labels:
+    name: by-stack-go
+  namespace: by-stack
+spec:
+  #type: NodePort
+  ports:
+  - name: catalogue
+    port: 8084
+    targetPort: 8084
+    #nodePort: 30205
+  - name: payment
+    port: 8085
+    targetPort: 8085
+    #nodePort: 30206
+  - name: user
+    port: 8086
+    targetPort: 8086
+    #nodePort: 30207
+  selector:
+    name: by-stack-go

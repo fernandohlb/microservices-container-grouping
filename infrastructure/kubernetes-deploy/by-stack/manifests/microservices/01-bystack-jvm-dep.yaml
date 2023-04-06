@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: by-stack-jvm
+  labels:
+    name: by-stack-jvm
+  namespace: by-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: by-stack-jvm
+  template:
+    metadata:
+      labels:
+        name: by-stack-jvm
+        department: by-stack
+    spec:
+      containers:
+      - name: bystackjvm
+        image: buzatof/by-stack-jvm
+        env:
+          - name: ZIPKIN
+            value: zipkin.jaeger.svc.cluster.local
+          - name: JAVA_OPTS
+            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+        resources:
+          limits:
+            cpu: 1900m
+            memory: 3048Mi
+          requests:
+            cpu: 400m
+            memory: 1100Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          initialDelaySeconds: 300
+          timeoutSeconds: 120
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          httpGet:
+            path: /health
+            port: 8082          
+          httpGet:
+            path: /health
+            port: 8083          
+          httpGet:
+            path: /health
+            port: 8087
+          initialDelaySeconds: 180
+          timeoutSeconds: 120       
+        ports:
+        - containerPort: 80
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        kubernetes.io/os: linux
+        namespace: by-stack
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "by-stack"
+          effect: "NoSchedule"

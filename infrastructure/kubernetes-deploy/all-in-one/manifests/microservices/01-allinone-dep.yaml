@@ -1,0 +1,112 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: all-in-one
+  labels:
+    name: all-in-one    
+    app: all-in-one
+    product: all-in-one
+  namespace: all-in-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: all-in-one
+  template:
+    metadata:
+      labels:
+        name: all-in-one    
+        department: all-in-one
+        app: all-in-one
+        product: all-in-one
+    spec:
+      containers:
+      - name: allinone
+        image: buzatof/all-in-one
+        env:
+          - name: ZIPKIN
+            value: zipkin.jaeger.svc.cluster.local
+          - name: MONGO_HOST
+            value: user-db:27017
+          - name: mongo
+            value: user-db:27017
+          - name: SESSION_REDIS
+            value: "true"
+        resources:
+          limits:
+            cpu: 3600m
+            memory: 4748Mi
+          requests:
+            cpu: 799m
+            memory: 1700Mi
+        livenessProbe:
+          httpGet:
+             path: /metrics
+             port: 8079
+        #   httpGet:
+        #     path: /health
+        #     port: 8081
+        #   httpGet:
+        #     path: /health
+        #     port: 8082          
+        #   httpGet:
+        #     path: /health
+        #     port: 8083          
+        #   httpGet:
+        #     path: /health
+        #     port: 8087    
+        #   httpGet:
+        #     path: /metrics
+        #     port: 8079
+          initialDelaySeconds: 300
+          timeoutSeconds: 120
+        readinessProbe:
+          httpGet:
+             path: /metrics
+             port: 8079
+          # httpGet:
+          #   path: /health
+          #   port: 8081
+          # httpGet:
+          #   path: /health
+          #   port: 8082          
+          # httpGet:
+          #   path: /health
+          #   port: 8083          
+          # httpGet:
+          #   path: /health
+          #   port: 8087    
+          # httpGet:
+          #   path: /metrics
+          #   port: 8079             
+          periodSeconds: 30
+          timeoutSeconds: 120
+          failureThreshold: 10
+          initialDelaySeconds: 30
+        ports:
+        - containerPort: 8079
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        kubernetes.io/os: linux
+        namespace: all-in-one
+      tolerations:
+        - key: "namespace"
+          operator: "Equal"
+          value: "all-in-one"
+          effect: "NoSchedule"

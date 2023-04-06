@@ -1,4 +1,6 @@
-FROM node:10-alpine as build-front
+FROM node:6-alpine as build-front
+
+RUN apk add --update openssl
 
 #Build Front-End
 ARG NAME=front-end
@@ -13,24 +15,40 @@ ENV BIN_DIR='/repos/bin'
 
 RUN mkdir repos
 RUN cd repos && wget ${REPO} -O ${COMPLETE_FILE_NAME} && unzip ${COMPLETE_FILE_NAME}
-RUN cd repos/${SCRIPT_DIR} && npm install
+RUN cd repos/${SCRIPT_DIR}
+# && npm install
 RUN mv repos/${SCRIPT_DIR} repos/${NAME}
 COPY endpoints.js /repos/${NAME}/api
 COPY customer-orders.html /repos/${NAME}/public
 
 
-FROM node:10-alpine
+FROM node:6-alpine
 
 ENV NODE_ENV "production"
 ENV PORT 8079
-
+EXPOSE 8079
+RUN addgroup mygroup && adduser -D -G mygroup myuser && mkdir -p /usr/src/app && chown -R myuser /usr/src/app
 
 #Cria o diretório base do container
-WORKDIR /usr/src/
+WORKDIR /usr/src/app
 
 #Copia os binários das aplicações para o diretorio base
-COPY --from=build-front /repos/front-end /usr/src/bin/front-end
-COPY run-apps-node.sh /usr/src/scripts/
+#COPY --from=build-front /repos/front-end /usr/src/bin/front-end
+#COPY run-apps-node.sh /usr/src/scripts/
+COPY --from=build-front /repos/front-end /usr/src/app/
+RUN rm -r /usr/src/app/node_modules/
+#COPY /usr/src/bin/front-end/package.json /usr/src/app/
+#COPY /usr/src/bin/front-end/yarn.lock /usr/src/app/
+RUN chown myuser /usr/src/app/yarn.lock
 
-EXPOSE 8079
-CMD ["sh","scripts/run-apps-node.sh"]
+USER myuser
+RUN yarn install
+
+#COPY . /usr/src/app
+
+# Start the app
+CMD ["/usr/local/bin/npm", "start"]
+
+
+#EXPOSE 8079
+#CMD ["sh","scripts/run-apps-node.sh"]

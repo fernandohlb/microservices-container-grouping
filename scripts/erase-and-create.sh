@@ -7,11 +7,18 @@ kubectl delete namespace by-dependencies
 
 echo 'Create all Namespaces'
 date --utc +%Y%m%d_%H:%M:%SZ
-kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/
-kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/
-kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/
-kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/
-sleep 5m
+kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/infraservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/infraservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/infraservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/infraservices/
+ 
+sleep 3m
+
+kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/microservices/
+
 
 echo 'Create Users in Databases'
 date --utc +%Y%m%d_%H:%M:%SZ
