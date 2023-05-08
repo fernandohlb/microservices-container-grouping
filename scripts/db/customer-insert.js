@@ -4,10 +4,10 @@ function get_results(result) {
 
 function insert_customer() {
 
-    for (let i = 3; i <= 1000; i++) {
-        var zerofilled = ('000'+i).slice(-3);
+    for (let i = 3; i <= 7000; i++) {
+        var zerofilled = ('0000'+i).slice(-4);
         object = {
-            "_id": ObjectId("57a98d98e4b00679b4a83" + zerofilled),
+            "_id": ObjectId("57a98d98e4b00679b4a8" + zerofilled),
             "firstName": "User" + i,
             "lastName": "Name" + i,
             "username": "user" + i,

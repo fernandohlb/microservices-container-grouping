@@ -23,36 +23,15 @@ spec:
         env:
           - name: ZIPKIN
             value: zipkin.jaeger.svc.cluster.local
-          - name: JAVA_OPTS
-            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+          # - name: JAVA_OPTS
+          #   value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
-            cpu: 1900m
-            memory: 3048Mi
+            cpu: 2320m
+            memory: 1900Mi
           requests:
-            cpu: 400m
-            memory: 1100Mi
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8081
-          initialDelaySeconds: 300
-          timeoutSeconds: 120
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8081
-          httpGet:
-            path: /health
-            port: 8082          
-          httpGet:
-            path: /health
-            port: 8083          
-          httpGet:
-            path: /health
-            port: 8087
-          initialDelaySeconds: 180
-          timeoutSeconds: 120       
+            cpu: 1160m
+            memory: 950Mi
         ports:
         - containerPort: 80
         securityContext:

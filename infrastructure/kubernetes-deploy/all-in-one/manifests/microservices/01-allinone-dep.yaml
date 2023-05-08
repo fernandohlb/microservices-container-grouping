@@ -35,51 +35,28 @@ spec:
             value: "true"
         resources:
           limits:
-            cpu: 3600m
-            memory: 4748Mi
+            cpu: 3640m
+            memory: 2740Mi
           requests:
-            cpu: 799m
-            memory: 1700Mi
-        livenessProbe:
+            cpu: 1820m
+            memory: 1370Mi
+        # livenessProbe:
+        #   httpGet:
+        #      path: /
+        #      port: 8079
+        #   initialDelaySeconds: 300            
+        #   periodSeconds: 10
+        #   failureThreshold: 30
+        startupProbe:
           httpGet:
-             path: /metrics
-             port: 8079
-        #   httpGet:
-        #     path: /health
-        #     port: 8081
-        #   httpGet:
-        #     path: /health
-        #     port: 8082          
-        #   httpGet:
-        #     path: /health
-        #     port: 8083          
-        #   httpGet:
-        #     path: /health
-        #     port: 8087    
-        #   httpGet:
-        #     path: /metrics
-        #     port: 8079
-          initialDelaySeconds: 300
-          timeoutSeconds: 120
+            path: /
+            port: 8079
+          failureThreshold: 30
+          periodSeconds: 10          
         readinessProbe:
           httpGet:
-             path: /metrics
+             path: /
              port: 8079
-          # httpGet:
-          #   path: /health
-          #   port: 8081
-          # httpGet:
-          #   path: /health
-          #   port: 8082          
-          # httpGet:
-          #   path: /health
-          #   port: 8083          
-          # httpGet:
-          #   path: /health
-          #   port: 8087    
-          # httpGet:
-          #   path: /metrics
-          #   port: 8079             
           periodSeconds: 30
           timeoutSeconds: 120
           failureThreshold: 10

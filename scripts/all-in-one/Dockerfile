@@ -1,6 +1,6 @@
 FROM maven:3.8.6-openjdk-8 as build-maven
 
-RUN apt-get update && apt-get install wget -y
+RUN apt update && apt install wget -y
 WORKDIR /repos
 RUN mkdir bin
 
@@ -71,11 +71,15 @@ RUN mvn -f ${SCRIPT_DIR} -DskipTests package
 RUN cp ${SCRIPT_DIR}/target/*.jar ${BIN_DIR}
 
 #Build Golang Applications
-FROM golang:1.7.6 as build-go
-RUN apt-get update && apt-get install wget -y
-RUN apt-get install git -y
-RUN apt-get install unzip -y
-RUN apt-get install --reinstall ca-certificates -y
+FROM golang:1.7.6-alpine as build-go
+RUN apk add --update wget
+RUN apk add git
+RUN apk add unzip
+RUN apk add ca-certificates
+# RUN apt-get update && apt-get install wget -y
+# RUN apt-get install git -y
+# RUN apt-get install unzip -y
+# RUN apt-get install --reinstall ca-certificates -y
 RUN git config --global http.sslVerify false
 
 RUN mkdir repos
@@ -132,7 +136,10 @@ RUN cd /go/src/github.com/microservices-demo/${NAME}/ && glide install
 RUN cd /go/src/github.com/microservices-demo/${NAME}/ && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o ${NAME}
 RUN cp /go/src/github.com/microservices-demo/${NAME}/${NAME} /go/bin
 
-FROM node:6-alpine as build-front
+####################### BUILD FRONT-END APP############################
+FROM node:6-alpine as download-front
+
+RUN apk add --update openssl
 
 #Build Front-End
 ARG NAME=front-end
@@ -147,10 +154,22 @@ ENV BIN_DIR='/repos/bin'
 
 RUN mkdir repos
 RUN cd repos && wget ${REPO} -O ${COMPLETE_FILE_NAME} && unzip ${COMPLETE_FILE_NAME}
-RUN cd repos/${SCRIPT_DIR} && npm install
+RUN cd repos/${SCRIPT_DIR}
+# && npm install
 RUN mv repos/${SCRIPT_DIR} repos/${NAME}
 COPY endpoints.js /repos/${NAME}/api
 COPY customer-orders.html /repos/${NAME}/public
+
+FROM node:6-alpine as build-front
+RUN addgroup mygroup && adduser -D -G mygroup myuser && mkdir -p /usr/src/app && chown -R myuser /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY --from=download-front /repos/front-end /usr/src/app/
+
+RUN chown myuser /usr/src/app/yarn.lock
+USER myuser
+RUN yarn install
 
 
 FROM node:6-alpine
@@ -160,14 +179,9 @@ ENV USER_DATABASE mongodb
 ENV MONGO_HOST user-db
 ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
 
+
 #Instala o Java no container
 RUN apk update && apk add openjdk8
-
-#Instala o supervisord
-# RUN apt-get install supervisor -y && \
-#   mkdir -p /var/log/supervisor && \
-#   mkdir -p /etc/supervisor/conf.d
-# ADD supervisor.conf /etc/supervisor.conf
 
 #Cria o diretório base do container
 WORKDIR /usr/src/
@@ -176,7 +190,7 @@ WORKDIR /usr/src/
 COPY --from=build-maven /repos/bin /usr/src/bin/
 COPY --from=build-go /go/bin /usr/src/bin/
 COPY --from=build-go /go/bin/images /usr/src/images/
-COPY --from=build-front /repos/front-end /usr/src/bin/front-end
+COPY --from=build-front /usr/src/app /usr/src/bin/front-end
 COPY run-apps-all-in-one.sh /usr/src/scripts/
 
 EXPOSE 80 8079-8087

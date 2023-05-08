@@ -11,14 +11,8 @@ kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/infrase
 kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/infraservices/
 kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/infraservices/
 kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/infraservices/
- 
-sleep 3m
 
-kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/microservices/
-kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/microservices/
-kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/microservices/
-kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/microservices/
-
+sleep 30s
 
 echo 'Create Users in Databases'
 date --utc +%Y%m%d_%H:%M:%SZ
@@ -44,7 +38,13 @@ kubectl port-forward -n by-dependencies deployment/user-db 27017 &
 
 sleep 10s
 sh db/mongo_create_insert.sh
-pkill kubectl -9
+pkill kubectl -9 
+
+kubectl apply -f ../infrastructure/kubernetes-deploy/benchmark/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/all-in-one/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-stack/manifests/microservices/
+kubectl apply -f ../infrastructure/kubernetes-deploy/by-dependencies/manifests/microservices/
+
 
 echo 'Scenarios created at: '
 date --utc +%Y%m%d_%H:%M:%SZ

@@ -29,15 +29,21 @@ spec:
             value: user-db:27017            
         resources:
           limits:
-            cpu: 700m
-            memory: 600Mi
+            cpu: 390m
+            memory: 160Mi
           requests:
-            cpu: 299m
-            memory: 300Mi
+            cpu: 195m
+            memory: 80Mi
         livenessProbe:
           httpGet:
             path: /health
             port: 8084
+          httpGet:
+            path: /health
+            port: 8085
+          httpGet:
+            path: /health
+            port: 8086
           initialDelaySeconds: 300
           timeoutSeconds: 120
         readinessProbe:

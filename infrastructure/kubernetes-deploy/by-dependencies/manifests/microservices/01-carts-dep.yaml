@@ -25,11 +25,11 @@ spec:
            value: -Xms64m -Xmx256m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
-            cpu: 600m
-            memory: 1024Mi
+            cpu: 920m
+            memory: 550Mi
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 460m
+            memory: 275Mi
         ports:
         - containerPort: 80
         securityContext:

@@ -24,11 +24,11 @@ spec:
         image: buzatof/front-end
         resources:
           limits:
-            cpu: 1000m
-            memory: 1100Mi
+            cpu: 930m
+            memory: 680Mi
           requests:
-            cpu: 100m
-            memory: 300Mi
+            cpu: 465m
+            memory: 340Mi
         ports:
         - containerPort: 8079
         env:
@@ -41,20 +41,36 @@ spec:
             drop:
               - all
           readOnlyRootFilesystem: true
+        startupProbe:
+          httpGet:
+            path: /
+            port: 8079
+          failureThreshold: 30
+          periodSeconds: 10          
         readinessProbe:
           httpGet:
-             path: /metrics
+             path: /
              port: 8079
           periodSeconds: 30
           timeoutSeconds: 120
           failureThreshold: 10
           initialDelaySeconds: 30
-        livenessProbe:
-          httpGet:
-            path: /metrics
-            port: 8079
-          initialDelaySeconds: 300
-          timeoutSeconds: 120
+        # readinessProbe:
+        #   httpGet:
+        #      path: /metrics
+        #      port: 8079
+        #   periodSeconds: 30
+        #   timeoutSeconds: 120
+        #   failureThreshold: 10
+        #   initialDelaySeconds: 30
+        # livenessProbe:
+        #   httpGet:
+        #     path: /metrics
+        #     port: 8079
+        #   initialDelaySeconds: 300
+        #   timeoutSeconds: 120
+        #   periodSeconds: 30
+        #   failureThreshold: 10
         # readinessProbe:
         #   httpGet:
         #     path: /metrics

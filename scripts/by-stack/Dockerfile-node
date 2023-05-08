@@ -1,5 +1,7 @@
 FROM node:6-alpine as build-front
 
+RUN apk add --update openssl
+
 #Build Front-End
 ARG NAME=front-end
 ARG TAG=0.3.12
@@ -13,7 +15,8 @@ ENV BIN_DIR='/repos/bin'
 
 RUN mkdir repos
 RUN cd repos && wget ${REPO} -O ${COMPLETE_FILE_NAME} && unzip ${COMPLETE_FILE_NAME}
-RUN cd repos/${SCRIPT_DIR} && npm install
+RUN cd repos/${SCRIPT_DIR}
+# && npm install
 RUN mv repos/${SCRIPT_DIR} repos/${NAME}
 COPY endpoints.js /repos/${NAME}/api
 COPY customer-orders.html /repos/${NAME}/public
@@ -33,7 +36,7 @@ WORKDIR /usr/src/app
 #COPY --from=build-front /repos/front-end /usr/src/bin/front-end
 #COPY run-apps-node.sh /usr/src/scripts/
 COPY --from=build-front /repos/front-end /usr/src/app/
-RUN rm -r /usr/src/app/node_modules/
+#RUN rm -r /usr/src/app/node_modules/
 #COPY /usr/src/bin/front-end/package.json /usr/src/app/
 #COPY /usr/src/bin/front-end/yarn.lock /usr/src/app/
 RUN chown myuser /usr/src/app/yarn.lock
@@ -41,11 +44,5 @@ RUN chown myuser /usr/src/app/yarn.lock
 USER myuser
 RUN yarn install
 
-#COPY . /usr/src/app
-
 # Start the app
 CMD ["/usr/local/bin/npm", "start"]
-
-
-#EXPOSE 8079
-#CMD ["sh","scripts/run-apps-node.sh"]

@@ -27,24 +27,18 @@ spec:
         #    value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
         resources:
           limits:
-            cpu: 1200m
-            memory: 1724Mi
+            cpu: 1130m
+            memory: 980Mi
           requests:
-            cpu: 299m
-            memory: 700Mi
+            cpu: 565m
+            memory: 490Mi
         livenessProbe:
           httpGet:
             path: /health
-            port: 8082          
+            port: 8085          
           initialDelaySeconds: 300
           timeoutSeconds: 120
         readinessProbe:
-          httpGet:
-            path: /health
-            port: 8082          
-          httpGet:
-            path: /health
-            port: 8083          
           httpGet:
             path: /health
             port: 8085

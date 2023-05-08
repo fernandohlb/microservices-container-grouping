@@ -1,0 +1,49 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""gaierror(-2, 'Name or service not known')""",3
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",50
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""ConnectionRefusedError(111, 'Connection refused')""",68
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e', 1, original=timed out)""",24
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b', 1, original=timed out)""",21
+GET,/basket.html,"""HTTPParseError('Incomplete response.')""",52
+GET,/login,"""RetriesExceeded('http://front-end.benchmark/login', 1, original=timed out)""",2249
+GET,/basket.html,"""RetriesExceeded('http://front-end.benchmark/basket.html', 1, original=timed out)""",622
+GET,/basket.html,"""ConnectionRefusedError(111, 'Connection refused')""",895
+GET,/login,"""ConnectionRefusedError(111, 'Connection refused')""",2778
+POST,/orders,"""RetriesExceeded('http://front-end.benchmark/orders', 1, original=timed out)""",1736
+POST,/cart,"""gaierror(-2, 'Name or service not known')""",1
+POST,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",2175
+POST,/cart,"""RetriesExceeded('http://front-end.benchmark/cart', 1, original=timed out)""",771
+GET,/,"""ConnectionRefusedError(111, 'Connection refused')""",931
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""ConnectionRefusedError(111, 'Connection refused')""",46
+GET,/login,"""gaierror(-2, 'Name or service not known')""",10
+DELETE,/cart,"""RetriesExceeded('http://front-end.benchmark/cart', 1, original=timed out)""",1542
+DELETE,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1856
+GET,/category.html,"""HTTPParseError('Incomplete response.')""",2
+GET,/category.html,"""RetriesExceeded('http://front-end.benchmark/category.html', 1, original=timed out)""",746
+GET,/login,"""HTTPParseError('Incomplete response.')""",2
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""ConnectionRefusedError(111, 'Connection refused')""",45
+GET,/,"""gaierror(-2, 'Name or service not known')""",27
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38', 1, original=timed out)""",13
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""ConnectionRefusedError(111, 'Connection refused')""",63
+POST,/orders,"""ConnectionResetError(104, 'Connection reset by peer')""",17
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d', 1, original=timed out)""",13
+GET,/category.html,"""ConnectionRefusedError(111, 'Connection refused')""",905
+GET,/,"""RetriesExceeded('http://front-end.benchmark/', 1, original=timed out)""",633
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""ConnectionRefusedError(111, 'Connection refused')""",65
+POST,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",12
+GET,/,"""HTTPParseError('Incomplete response.')""",2
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e', 1, original=timed out)""",19
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b', 1, original=timed out)""",22
+GET,/login,"""ConnectionResetError(104, 'Connection reset by peer')""",54
+POST,/orders,"""BadStatusCode('http://front-end.benchmark/orders', code=500)""",1750
+POST,/cart,"""ConnectionResetError(104, 'Connection reset by peer')""",42
+POST,/orders,"""ConnectionRefusedError(111, 'Connection refused')""",4260
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""ConnectionRefusedError(111, 'Connection refused')""",51
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""ConnectionRefusedError(111, 'Connection refused')""",50
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b', 1, original=timed out)""",15
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246', 1, original=timed out)""",22
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac', 1, original=timed out)""",16
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",49
+GET,/basket.html,"""ConnectionResetError(104, 'Connection reset by peer')""",11

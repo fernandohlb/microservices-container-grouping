@@ -1,9 +1,13 @@
 #Build Golang Applications
-FROM golang:1.7.6 as build-go
-RUN apt-get update && apt-get install wget -y
-RUN apt-get install git -y
-RUN apt-get install unzip -y
-RUN apt-get install --reinstall ca-certificates -y
+FROM golang:1.7.6-alpine as build-go
+RUN apk add --update wget
+RUN apk add git
+RUN apk add unzip
+RUN apk add ca-certificates
+# RUN apt-get update && apt-get install wget -y
+# RUN apt-get install git -y
+# RUN apt-get install unzip -y
+# RUN apt-get install --reinstall ca-certificates -y
 RUN git config --global http.sslVerify false
 
 RUN mkdir repos

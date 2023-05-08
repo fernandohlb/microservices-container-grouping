@@ -24,14 +24,14 @@ spec:
         image: weaveworksdemos/carts:0.4.8
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx512m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -Dhttp.timeout=120
+           value: -Xms64m -Xmx256m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -Dhttp.timeout=120
         resources:
           limits:
-            cpu: 600m
-            memory: 1024Mi
+            cpu: 920m
+            memory: 550Mi
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 460m
+            memory: 275Mi
         ports:
         - containerPort: 80
         securityContext:
