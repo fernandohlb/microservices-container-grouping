@@ -1,0 +1,7 @@
+Costs
+
+https://fernandohlb.grafana.net/dashboard/snapshot/MFf5jdYbXO9VyeWxmsDRA0d8s0b8CmSo
+
+Resources
+
+https://fernandohlb.grafana.net/dashboard/snapshot/mXTheSb8F6ko7y6NWdfxGUc9AnSWjCaq

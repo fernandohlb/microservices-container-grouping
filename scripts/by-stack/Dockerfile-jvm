@@ -56,11 +56,11 @@ RUN cp ${SCRIPT_DIR}/target/*.jar ${BIN_DIR}
 
 #Build queue
 ARG NAME=queue-master
-ARG TAG=0.3.1
+ARG TAG=master
 ENV FILE=${TAG}.zip
 ENV COMPLETE_FILE_NAME=${NAME}'-'${FILE}
 ARG REPO_ROOT=https://github.com/microservices-demo/ \
-    REPO_ARCHIVE_PATH=/archive/refs/tags/
+    REPO_ARCHIVE_PATH=/archive/refs/heads/
 ENV REPO=${REPO_ROOT}${NAME}${REPO_ARCHIVE_PATH}${FILE}
 ENV SCRIPT_DIR=${NAME}'-'${TAG}'/'
 ENV BIN_DIR='/repos/bin'   

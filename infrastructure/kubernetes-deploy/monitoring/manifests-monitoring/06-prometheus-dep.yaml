@@ -24,16 +24,22 @@ spec:
       - name: prometheus
         image: prom/prometheus:v2.26.0
         args:
-        - '--storage.tsdb.retention=360h'
+        - '--storage.tsdb.retention=30d'
         - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.path=/data'
         ports:
         - name: web
           containerPort: 9090
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
         volumeMounts:
         - name: config-volume
           mountPath: /etc/prometheus
         - name: alertrules-volume
           mountPath: /etc/prometheus-rules
+        - name: prom-pvc
+          mountPath: /data
       volumes:
       - name: config-volume
         configMap:
@@ -41,6 +47,9 @@ spec:
       - name: alertrules-volume
         configMap:
           name: prometheus-alertrules
+      - name: prom-pvc
+        persistentVolumeClaim:
+          claimName: prom-data-pvc
       nodeSelector:
         beta.kubernetes.io/os: linux
         namespace: monitoring

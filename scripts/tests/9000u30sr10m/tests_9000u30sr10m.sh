@@ -4,7 +4,8 @@ SPAWN_RATE=30
 
 #declare -a arr=("benchmark" "all-in-one" "by-stack" "by-dependencies")
 
-for i in "benchmark" "all-in-one" "by-stack" "by-dependencies"
+for i in "benchmark"
+# "all-in-one" "by-stack" "by-dependencies"
 do 
     echo '##########' $i 'Test '$WORKLOAD_USERS' users' $SPAWN_RATE' spawn rate 10 minutes ##########'
     scp -i ~/.ssh/MICROSERVICES-CONTAINER-GROUPING.pem -o StrictHostKeyChecking=no $i/locust.conf ec2-user@ec2-15-229-77-7.sa-east-1.compute.amazonaws.com:/tmp

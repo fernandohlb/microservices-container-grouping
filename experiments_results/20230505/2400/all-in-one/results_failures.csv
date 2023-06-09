@@ -1,4 +1,0 @@
-Method,Name,Error,Occurrences
-POST,/orders,"""BadStatusCode('http://all-in-one.all-in-one/orders', code=500)""",1
-POST,/cart,"""BadStatusCode('http://all-in-one.all-in-one/cart', code=500)""",29
-POST,/cart,"""RetriesExceeded('http://all-in-one.all-in-one/cart', 1, original=timed out)""",74

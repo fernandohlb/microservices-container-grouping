@@ -1,0 +1,19 @@
+Method,Name,Error,Occurrences
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",21
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""ConnectionRefusedError(111, 'Connection refused')""",13
+GET,/basket.html,"""ConnectionRefusedError(111, 'Connection refused')""",425
+GET,/login,"""ConnectionRefusedError(111, 'Connection refused')""",888
+POST,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",874
+GET,/,"""ConnectionRefusedError(111, 'Connection refused')""",479
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""ConnectionRefusedError(111, 'Connection refused')""",15
+DELETE,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1837
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""ConnectionRefusedError(111, 'Connection refused')""",19
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""ConnectionRefusedError(111, 'Connection refused')""",22
+POST,/cart,"""BadStatusCode('http://all-in-one.all-in-one/cart', code=500)""",21
+GET,/category.html,"""ConnectionRefusedError(111, 'Connection refused')""",417
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""ConnectionRefusedError(111, 'Connection refused')""",17
+POST,/orders,"""ConnectionRefusedError(111, 'Connection refused')""",2352
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""ConnectionRefusedError(111, 'Connection refused')""",17
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""ConnectionRefusedError(111, 'Connection refused')""",21
+POST,/orders,"""RetriesExceeded('http://all-in-one.all-in-one/orders', 1, original=timed out)""",13601
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",12
