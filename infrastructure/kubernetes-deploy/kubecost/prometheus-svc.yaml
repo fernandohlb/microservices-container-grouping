@@ -8,3 +8,5 @@ spec:
     nodePort: 30518
   selector:
     app: prometheus
+
+# kubectl patch svc kubecost-prometheus-server --patch "$(cat prometheus-svc.yaml)" -n kubecost
