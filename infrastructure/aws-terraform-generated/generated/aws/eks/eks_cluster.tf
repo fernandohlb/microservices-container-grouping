@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "tfer--microservices-container-grouping" {
-  enabled_cluster_log_types = ["api", "audit", "controllerManager"]
+  #enabled_cluster_log_types = ["api", "audit", "controllerManager"]
   tags = {
     "User"       = "FernandoHenriqueBuzato"
     "experiment" = "microservices-grouping"
@@ -15,7 +15,7 @@ resource "aws_eks_cluster" "tfer--microservices-container-grouping" {
 
   name     = "microservices-container-grouping"
   role_arn = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415185049499400000003"
-  version  = "1.22"
+  version  = "1.23"
 
   vpc_config {
     endpoint_private_access = "false"

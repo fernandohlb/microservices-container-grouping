@@ -1,6 +1,6 @@
 Costs
 
-https://fernandohlb.grafana.net/goto/EyM9valVg?orgId=1
+https://fernandohlb.grafana.net/d/lWMhIA-ik/label-costs-and-utilization?orgId=1&from=1685125005000&to=1685125605000&var-label=department&var-label_value=all-in-one&var-Deployments=All&var-Secondary=All&var-datasource=Prometheus-kubecost
 
 Resources
 

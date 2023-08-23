@@ -1,0 +1,5 @@
+"workload","scenario","Min","First.Quartile","Median","Third.Quartile","Maximum"
+"4500","benchmark",165,210,217.5,240,255
+"4500","all-in-one",30,30,30,30,30
+"4500","by-stack",135,180,202.5,225,270
+"4500","by-dependencies",180,225,270,285,285

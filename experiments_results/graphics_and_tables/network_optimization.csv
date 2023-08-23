@@ -1,0 +1,10 @@
+workload,scenario,transmit_optimization_percentage,receive_optimization_percentage
+300,all-in-one,12.3056058,17.0508313
+300,by-stack,1.0044493,1.1365745
+300,by-dependencies,-0.2720717,1.5425368
+2400,all-in-one,4.2310842,8.0638860
+2400,by-stack,-6.3282364,-7.6223655
+2400,by-dependencies,-0.8258473,-1.0640501
+4500,all-in-one,-34.8595780,-28.7683934
+4500,by-stack,-36.3987931,-34.6688460
+4500,by-dependencies,-6.6574357,-6.8398907

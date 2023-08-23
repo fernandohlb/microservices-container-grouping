@@ -1,0 +1,10 @@
+workload,scenario,Optimization
+300,all-in-one,6.997
+300,by-stack,1.596
+300,by-dependencies,-0.073
+2400,all-in-one,2.901
+2400,by-stack,1.403
+2400,by-dependencies,0.132
+4500,all-in-one,5.599
+4500,by-stack,6.148
+4500,by-dependencies,4.910
