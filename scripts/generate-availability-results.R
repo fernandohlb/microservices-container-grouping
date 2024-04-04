@@ -52,8 +52,11 @@ availability_table$availability_time_percentage = round(((availability_table$tot
 
  figAvailabilityByError.scenario <- ggplot(availability_table, aes(x=factor(scenario, level=c('benchmark', 'all-in-one', 'by-stack','by-dependencies')), y=availability_error_percentage)) +
                        geom_boxplot() +
-                       facet_wrap(~workload, scales = "free") +
-                       ggtitle("Availability By Error Percenatage x Scenario") +
+                       scale_y_continuous(labels = function(y) round(y, 2)) +
+                       facet_wrap(~workload, scales = "free", labeller = as_labeller(c('300'='Low', '2400'='Medium', '4500'='High'))) +
+                      # ylim(50.00,100.10) + 
+                       # facet_wrap(~workload, scales = "free") +
+                       # ggtitle("Availability By Error Percenatage x Scenario") +
                        xlab("Grouping Scenarios") +
                        ylab("Availability By Error (%)")+
                        guides(color = guide_legend(title="Scenario")) +
@@ -75,6 +78,33 @@ availability_table$availability_time_percentage = round(((availability_table$tot
    write.table(consolidated_table_summary, "graphics_and_tables/summarized_availability_error.csv", sep=",",row.names=FALSE)
    dev.off()
    
+   figAvailabilityByTime.scenario <- ggplot(availability_table, aes(x=factor(scenario, level=c('benchmark', 'all-in-one', 'by-stack','by-dependencies')), y=availability_time_percentage)) +
+     geom_boxplot() +
+     facet_wrap(~workload, scales = "free", labeller = as_labeller(c('300'='Low', '2400'='Medium', '4500'='High'))) +     
+     scale_y_continuous(labels = function(y) round(y, 2)) +
+     # ylim(50.00,100.10) + 
+     # facet_wrap(~workload, scales = "free") +
+     # ggtitle("Availability By Time Percenatage x Scenario") +
+     xlab("Grouping Scenarios") +
+     ylab("Availability By Time (%)")+
+     guides(color = guide_legend(title="Scenario")) +
+     theme(plot.title = element_text(hjust = 0.5, vjust = 5, size = 20),
+           strip.text = element_text(size= 16),
+           plot.margin = unit(c(1,1,1,1), "cm"),
+           axis.text = element_text(size = 16),
+           axis.text.x = element_text(angle = -45),
+           legend.title = element_text(size = 12),
+           legend.text = element_text(size = 12),
+           axis.title = element_text(size = 16),
+           axis.title.y=element_text(vjust=5),
+           axis.title.x=element_text(vjust=-5))
+   
+   pdf("graphics_and_tables/availability_time_scenario.pdf", width = 16, height = 9)
+   print(figAvailabilityByTime.scenario)
+   consolidated_table_summary <- consolidate_summary(availability_table, availability_table$availability_time_percentage, workloads, scenarios)
+   
+   write.table(consolidated_table_summary, "graphics_and_tables/summarized_availability_time.csv", sep=",",row.names=FALSE)
+   dev.off()   
    
    # figPodRestarts.scenario <- ggplot(df, aes(x=factor(scenario, level=c('benchmark', 'all-in-one', 'by-stack','by-dependencies')), y=restart_totals)) +
    #   geom_boxplot() +

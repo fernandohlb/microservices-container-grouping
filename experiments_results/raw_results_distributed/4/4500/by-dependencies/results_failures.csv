@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""RetriesExceeded('http://front-end.by-dependencies/orders', 1, original=timed out)""",9996
+POST,/cart,"""BadStatusCode('http://front-end.by-dependencies/cart', code=500)""",75

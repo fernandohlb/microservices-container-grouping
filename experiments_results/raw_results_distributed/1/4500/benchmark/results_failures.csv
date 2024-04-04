@@ -1,0 +1,52 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""gaierror(-2, 'Name or service not known')""",67
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",6
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""HTTPParseError('Incomplete response.')""",4
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""ConnectionRefusedError(111, 'Connection refused')""",6
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""RetriesExceeded('http://front-end.benchmark/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e', 1, original=timed out)""",1
+DELETE,/cart,"""gaierror(-2, 'Name or service not known')""",58
+GET,/login,"""RetriesExceeded('http://front-end.benchmark/login', 1, original=timed out)""",1
+GET,/basket.html,"""RetriesExceeded('http://front-end.benchmark/basket.html', 1, original=timed out)""",4
+GET,/basket.html,"""ConnectionRefusedError(111, 'Connection refused')""",316
+GET,/login,"""ConnectionRefusedError(111, 'Connection refused')""",1217
+POST,/orders,"""RetriesExceeded('http://front-end.benchmark/orders', 1, original=timed out)""",79
+POST,/cart,"""gaierror(-2, 'Name or service not known')""",35
+POST,/cart,"""gaierror(-3, 'Temporary failure in name resolution')""",11
+DELETE,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",4
+POST,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1514
+POST,/cart,"""RetriesExceeded('http://front-end.benchmark/cart', 1, original=timed out)""",38
+GET,/,"""ConnectionRefusedError(111, 'Connection refused')""",39
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""ConnectionRefusedError(111, 'Connection refused')""",8
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""HTTPParseError('Incomplete response.')""",8
+DELETE,/cart,"""gaierror(-3, 'Temporary failure in name resolution')""",29
+GET,/login,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""gaierror(-2, 'Name or service not known')""",1
+DELETE,/cart,"""RetriesExceeded('http://front-end.benchmark/cart', 1, original=timed out)""",32
+GET,/basket.html,"""gaierror(-2, 'Name or service not known')""",20
+POST,/orders,"""gaierror(-3, 'Temporary failure in name resolution')""",6
+DELETE,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1336
+GET,/category.html,"""HTTPParseError('Incomplete response.')""",16
+GET,/category.html,"""RetriesExceeded('http://front-end.benchmark/category.html', 1, original=timed out)""",8
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""ConnectionRefusedError(111, 'Connection refused')""",6
+GET,/login,"""gaierror(-3, 'Temporary failure in name resolution')""",1
+GET,/,"""gaierror(-2, 'Name or service not known')""",18
+GET,/category.html,"""gaierror(-2, 'Name or service not known')""",14
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""ConnectionRefusedError(111, 'Connection refused')""",9
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""HTTPParseError('Incomplete response.')""",11
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""HTTPParseError('Incomplete response.')""",2
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""HTTPParseError('Incomplete response.')""",4
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""HTTPParseError('Incomplete response.')""",3
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""HTTPParseError('Incomplete response.')""",5
+GET,/category.html,"""ConnectionRefusedError(111, 'Connection refused')""",214
+GET,/,"""RetriesExceeded('http://front-end.benchmark/', 1, original=timed out)""",10
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""ConnectionRefusedError(111, 'Connection refused')""",5
+POST,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",43
+GET,/,"""HTTPParseError('Incomplete response.')""",12
+POST,/orders,"""BadStatusCode('http://front-end.benchmark/orders', code=500)""",6455
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""HTTPParseError('Incomplete response.')""",6
+POST,/orders,"""ConnectionRefusedError(111, 'Connection refused')""",756
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""ConnectionRefusedError(111, 'Connection refused')""",6
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""ConnectionRefusedError(111, 'Connection refused')""",6
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""HTTPParseError('Incomplete response.')""",2
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",6

@@ -1,0 +1,20 @@
+Method,Name,Error,Occurrences
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""ConnectionRefusedError(111, 'Connection refused')""",3
+GET,/basket.html,"""ConnectionRefusedError(111, 'Connection refused')""",69
+GET,/login,"""ConnectionRefusedError(111, 'Connection refused')""",106
+POST,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",120
+POST,/orders,"""RetriesExceeded('http://front-end.by-dependencies/orders', 1, original=timed out)""",2
+GET,/,"""ConnectionRefusedError(111, 'Connection refused')""",78
+POST,/cart,"""BadStatusCode('http://front-end.by-dependencies/cart', code=500)""",59
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""ConnectionRefusedError(111, 'Connection refused')""",3
+DELETE,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",142
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""ConnectionRefusedError(111, 'Connection refused')""",3
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""ConnectionRefusedError(111, 'Connection refused')""",2
+POST,/cart,"""RetriesExceeded('http://front-end.by-dependencies/cart', 1, original=timed out)""",1
+GET,/category.html,"""ConnectionRefusedError(111, 'Connection refused')""",52
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""ConnectionRefusedError(111, 'Connection refused')""",4
+POST,/cart,"""ConnectionResetError(104, 'Connection reset by peer')""",1
+POST,/orders,"""ConnectionRefusedError(111, 'Connection refused')""",168
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""ConnectionRefusedError(111, 'Connection refused')""",3
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""ConnectionRefusedError(111, 'Connection refused')""",2
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",4

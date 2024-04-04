@@ -1,0 +1,36 @@
+Count,Message,Traceback,Nodes
+3,Incomplete response.,"  File ""/opt/venv/lib/python3.11/site-packages/locust/user/task.py"", line 342, in run
+    self.execute_next_task()
+  File ""/opt/venv/lib/python3.11/site-packages/locust/user/task.py"", line 375, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""/opt/venv/lib/python3.11/site-packages/locust/user/task.py"", line 492, in execute_task
+    task(self.user)
+  File ""/home/locust/locustfile.py"", line 39, in load_test
+    self.client.post(""/cart"", json={""id"": item_id, ""quantity"": 1})
+  File ""/opt/venv/lib/python3.11/site-packages/locust/contrib/fasthttp.py"", line 284, in post
+    return self.request(""POST"", url, data=data, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/locust/contrib/fasthttp.py"", line 219, in request
+    response = self._send_request_safe_mode(method, built_url, payload=data, headers=headers, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/locust/contrib/fasthttp.py"", line 132, in _send_request_safe_mode
+    return self.client.urlopen(url, method=method, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/geventhttpclient/useragent.py"", line 473, in urlopen
+    e.http_log = self._conversation_str(req.url, resp, payload=req.payload)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/geventhttpclient/useragent.py"", line 539, in _conversation_str
+    header_str + '\n\n' + resp.content[:].decode('utf-8')
+                          ^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/geventhttpclient/useragent.py"", line 203, in content
+    self._cached_content = self._content()
+                           ^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/locust/contrib/fasthttp.py"", line 511, in _content
+    return super()._content()
+           ^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/geventhttpclient/useragent.py"", line 218, in _content
+    ret = self._response.read()
+          ^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/venv/lib/python3.11/site-packages/geventhttpclient/response.py"", line 254, in read
+    self.feed(data)
+","load-test-nodes-d75bf4f6c-rpnl4_604d5cfdbe5948919132cc6386fd2eae, load-test-nodes-d75bf4f6c-52jjp_d3689818e60b4dd7bd750c08701babb7, load-test-nodes-d75bf4f6c-zjcdt_2ff9511d2c244b98bb25b00d8d8e1228"

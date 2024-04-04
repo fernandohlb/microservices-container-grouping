@@ -2,9 +2,12 @@ echo 'Delete all Namespaces'
 date --utc +%Y%m%d_%H:%M:%SZ
 
 for i in "benchmark" "all-in-one" "by-stack" "by-dependencies"
+#for i in "benchmark"
 do 
     kubectl delete -f ../infrastructure/kubernetes-deploy/$i/manifests/infraservices/
     kubectl delete -f ../infrastructure/kubernetes-deploy/$i/manifests/infraservices/user-db/
+    kubectl delete -f ../infrastructure/kubernetes-deploy/$i/manifests/
+    kubectl apply -f ../infrastructure/kubernetes-deploy/$i/manifests/
     kubectl apply -f ../infrastructure/kubernetes-deploy/$i/manifests/infraservices/
     kubectl apply -f ../infrastructure/kubernetes-deploy/$i/manifests/infraservices/user-db/
 
@@ -22,11 +25,12 @@ done
 sleep 30s
 
 for i in "benchmark" "all-in-one" "by-stack" "by-dependencies"
+#for i in "benchmark"
 do 
     kubectl delete -f ../infrastructure/kubernetes-deploy/$i/manifests/microservices/
+    kubectl delete -f ../infrastructure/kubernetes-deploy/$i/autoscaling/
     kubectl apply -f ../infrastructure/kubernetes-deploy/$i/manifests/microservices/
 done
-
 
 echo 'Scenarios created at: '
 date --utc +%Y%m%d_%H:%M:%SZ

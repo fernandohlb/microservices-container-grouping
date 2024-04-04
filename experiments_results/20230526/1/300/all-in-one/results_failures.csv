@@ -1,2 +1,0 @@
-Method,Name,Error,Occurrences
-POST,/cart,"""BadStatusCode('http://all-in-one.all-in-one/cart', code=500)""",4

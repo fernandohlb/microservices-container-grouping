@@ -1,0 +1,60 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""gaierror(-2, 'Name or service not known')""",36
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",28
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""ConnectionRefusedError(111, 'Connection refused')""",25
+DELETE,/cart,"""gaierror(-2, 'Name or service not known')""",55
+GET,/basket.html,"""HTTPParseError('Incomplete response.')""",4
+GET,/,"""gaierror(-3, 'Temporary failure in name resolution')""",17
+GET,/login,"""RetriesExceeded('http://front-end.benchmark/login', 1, original=timed out)""",25
+GET,/basket.html,"""ConnectionRefusedError(111, 'Connection refused')""",565
+GET,/login,"""ConnectionRefusedError(111, 'Connection refused')""",1253
+POST,/orders,"""RetriesExceeded('http://front-end.benchmark/orders', 1, original=timed out)""",548
+POST,/cart,"""gaierror(-2, 'Name or service not known')""",14
+POST,/cart,"""gaierror(-3, 'Temporary failure in name resolution')""",4
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""gaierror(-2, 'Name or service not known')""",1
+DELETE,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",7
+POST,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1516
+POST,/cart,"""RetriesExceeded('http://front-end.benchmark/cart', 1, original=timed out)""",8
+GET,/,"""ConnectionRefusedError(111, 'Connection refused')""",264
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""ConnectionRefusedError(111, 'Connection refused')""",35
+DELETE,/cart,"""gaierror(-3, 'Temporary failure in name resolution')""",14
+GET,/login,"""gaierror(-2, 'Name or service not known')""",10
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""gaierror(-2, 'Name or service not known')""",2
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""gaierror(-2, 'Name or service not known')""",1
+GET,/basket.html,"""gaierror(-2, 'Name or service not known')""",40
+POST,/orders,"""gaierror(-3, 'Temporary failure in name resolution')""",6
+DELETE,/cart,"""ConnectionRefusedError(111, 'Connection refused')""",1730
+GET,/category.html,"""HTTPParseError('Incomplete response.')""",2
+GET,/login,"""HTTPParseError('Incomplete response.')""",4
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""ConnectionRefusedError(111, 'Connection refused')""",21
+GET,/login,"""gaierror(-3, 'Temporary failure in name resolution')""",3
+GET,/,"""gaierror(-2, 'Name or service not known')""",71
+GET,/category.html,"""gaierror(-3, 'Temporary failure in name resolution')""",6
+GET,/category.html,"""gaierror(-2, 'Name or service not known')""",36
+GET,/detail.html?id=3395a43e-2d88-40de-b95f-e00e1502085b,"""ConnectionRefusedError(111, 'Connection refused')""",21
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""gaierror(-3, 'Temporary failure in name resolution')""",1
+POST,/orders,"""ConnectionResetError(104, 'Connection reset by peer')""",10
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""HTTPParseError('Incomplete response.')""",1
+GET,/detail.html?id=d3588630-ad8e-49df-bbd7-3167f7efb246,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""gaierror(-3, 'Temporary failure in name resolution')""",1
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""HTTPParseError('Incomplete response.')""",1
+GET,/category.html,"""ConnectionRefusedError(111, 'Connection refused')""",517
+GET,/detail.html?id=a0a4f044-b040-410d-8ead-4de0446aec7e,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=03fef6ac-1896-4ce8-bd69-b798f85c6e0b,"""ConnectionRefusedError(111, 'Connection refused')""",24
+GET,/basket.html,"""gaierror(-3, 'Temporary failure in name resolution')""",6
+DELETE,/cart,"""ConnectionResetError(104, 'Connection reset by peer')""",6
+POST,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",51
+GET,/,"""HTTPParseError('Incomplete response.')""",4
+GET,/login,"""ConnectionResetError(104, 'Connection reset by peer')""",2
+GET,/detail.html?id=510a0d7e-8e83-4193-b483-e27e09ddc34d,"""gaierror(-2, 'Name or service not known')""",1
+POST,/orders,"""BadStatusCode('http://front-end.benchmark/orders', code=500)""",3432
+POST,/cart,"""ConnectionResetError(104, 'Connection reset by peer')""",4
+POST,/orders,"""ConnectionRefusedError(111, 'Connection refused')""",1682
+GET,/detail.html?id=837ab141-399e-4c1f-9abc-bace40296bac,"""ConnectionRefusedError(111, 'Connection refused')""",19
+GET,/detail.html?id=808a2de1-1aaa-4c25-a9b9-6612e8f29a38,"""ConnectionRefusedError(111, 'Connection refused')""",23
+POST,/orders,"""HTTPParseError('Incomplete response.')""",2
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""gaierror(-2, 'Name or service not known')""",1
+GET,/detail.html?id=819e1fbf-8b7e-4f6d-811f-693534916a8b,"""HTTPParseError('Incomplete response.')""",1
+GET,/detail.html?id=zzz4f044-b040-410d-8ead-4de0446aec7e,"""ConnectionRefusedError(111, 'Connection refused')""",26

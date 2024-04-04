@@ -1,0 +1,4 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""BadStatusCode('http://by-stack-node.by-stack/orders', code=500)""",23
+POST,/cart,"""BadStatusCode('http://by-stack-node.by-stack/cart', code=500)""",64
+POST,/orders,"""RetriesExceeded('http://by-stack-node.by-stack/orders', 1, original=timed out)""",12073

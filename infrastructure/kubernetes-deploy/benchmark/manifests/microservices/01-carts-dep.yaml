@@ -32,6 +32,12 @@ spec:
           requests:
             cpu: 460m
             memory: 275Mi
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 65
+          timeoutSeconds: 120
         ports:
         - containerPort: 80
         securityContext:

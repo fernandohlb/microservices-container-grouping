@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""BadStatusCode('http://by-stack-node.by-stack/orders', code=500)""",1
+POST,/cart,"""BadStatusCode('http://by-stack-node.by-stack/cart', code=500)""",77

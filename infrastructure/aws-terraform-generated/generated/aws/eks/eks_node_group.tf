@@ -14,9 +14,9 @@ resource "aws_eks_node_group" "tfer--all-in-one" {
   # release_version = "1.22.17-20230513"
 
   scaling_config {
-    desired_size = "1"
-    max_size     = "1"
-    min_size     = "1"
+    desired_size = "2"
+    max_size     = "2"
+    min_size     = "2"
   }
 
   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
@@ -50,9 +50,9 @@ resource "aws_eks_node_group" "tfer--benchmark" {
   # release_version = "1.22.17-20230513"
 
   scaling_config {
-    desired_size = "1"
-    max_size     = "1"
-    min_size     = "1"
+    desired_size = "2"
+    max_size     = "2"
+    min_size     = "2"
   }
 
   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
@@ -86,9 +86,9 @@ resource "aws_eks_node_group" "tfer--by-dependencies" {
   # release_version = "1.22.17-20230513"
 
   scaling_config {
-    desired_size = "1"
-    max_size     = "1"
-    min_size     = "1"
+    desired_size = "2"
+    max_size     = "2"
+    min_size     = "2"
   }
 
   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
@@ -122,9 +122,9 @@ resource "aws_eks_node_group" "tfer--by-stack" {
   # release_version = "1.22.17-20230513"
 
   scaling_config {
-    desired_size = "1"
-    max_size     = "1"
-    min_size     = "1"
+    desired_size = "2"
+    max_size     = "2"
+    min_size     = "2"
   }
 
   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]

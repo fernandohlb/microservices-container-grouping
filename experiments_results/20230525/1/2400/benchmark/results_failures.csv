@@ -1,3 +1,0 @@
-Method,Name,Error,Occurrences
-POST,/cart,"""BadStatusCode('http://front-end.benchmark/cart', code=500)""",32
-POST,/orders,"""BadStatusCode('http://front-end.benchmark/orders', code=500)""",77

@@ -12,6 +12,7 @@ sleep 30s
 for i in "benchmark" "all-in-one" "by-stack" "by-dependencies"
 do 
     kubectl delete -f ../infrastructure/kubernetes-deploy/$i/manifests/microservices/
+    kubectl delete -f ../infrastructure/kubernetes-deploy/$i/autoscaling/
     kubectl apply -f ../infrastructure/kubernetes-deploy/$i/manifests/microservices/
 done
 

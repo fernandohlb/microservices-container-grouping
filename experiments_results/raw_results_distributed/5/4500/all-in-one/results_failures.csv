@@ -1,0 +1,4 @@
+Method,Name,Error,Occurrences
+POST,/orders,"""BadStatusCode('http://all-in-one.all-in-one/orders', code=500)""",46
+POST,/cart,"""BadStatusCode('http://all-in-one.all-in-one/cart', code=500)""",90
+POST,/orders,"""RetriesExceeded('http://all-in-one.all-in-one/orders', 1, original=timed out)""",1437

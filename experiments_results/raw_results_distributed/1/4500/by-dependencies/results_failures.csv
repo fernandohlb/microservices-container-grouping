@@ -1,0 +1,6 @@
+Method,Name,Error,Occurrences
+DELETE,/cart,"""RetriesExceeded('http://front-end.by-dependencies/cart', 1, original=timed out)""",48
+POST,/orders,"""RetriesExceeded('http://front-end.by-dependencies/orders', 1, original=timed out)""",9198
+POST,/cart,"""BadStatusCode('http://front-end.by-dependencies/cart', code=500)""",81
+POST,/cart,"""RetriesExceeded('http://front-end.by-dependencies/cart', 1, original=timed out)""",885
+GET,/login,"""RetriesExceeded('http://front-end.by-dependencies/login', 1, original=timed out)""",194
