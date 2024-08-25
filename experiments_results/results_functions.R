@@ -85,7 +85,7 @@ consolidate_table <- function(origem.folder,samples, workloads, scenarios,file.n
         
         #file_table <- f1(file_table,10)
         
-        file_table <- file_table %>% select(-Time)
+        #file_table <- file_table %>% select(-Time)
         columnames_vector<-vector()
         for (metric in metrics){
           columnames_vector <- c(columnames_vector, paste(metric,"_result",sep = ""))
@@ -103,6 +103,41 @@ consolidate_table <- function(origem.folder,samples, workloads, scenarios,file.n
     }
   }
   return(df)
+}
+
+convert_timestamp_seconds <- function(file_table,timeColumn,interval) {
+  # Ordenar o dataset pelo timestamp
+  file_table <- file_table[order(file_table[[timeColumn]]),]
+  
+  # Encontrar o tempo da primeira linha
+  first_timestamp <- file_table[[timeColumn]][1]
+  
+  # Calcular o intervalo de 30 segundos
+  #interval <- 60
+  
+  # Calcular os tempos de início dos intervalos
+  end_time <- max(file_table[[timeColumn]])
+  start_times <- seq(from = first_timestamp, to = end_time, by = interval)
+  
+  # Adicionar o tempo máximo, caso não esteja já incluso
+  if (!(end_time %in% start_times)) {
+    if(length(start_times)==10) {
+      start_times <- c(start_times, end_time)
+    }
+  }
+  
+  # Filtrar as linhas com base nos tempos de início dos intervalos
+  file_table <- file_table %>%
+    filter(!!sym(timeColumn) %in% start_times)
+  
+
+  # Cria a coluna segundos
+  file_table <- file_table %>%
+    arrange(!!sym(timeColumn)) %>%
+    mutate(seconds = as.numeric(!!sym(timeColumn) - first(!!sym(timeColumn))), seconds = if_else(seconds %% 60 != 0, (seconds - seconds %% 60)+60 , (seconds - seconds %% 60)))
+  
+  return (file_table)
+  
 }
 
 consolidate_table_by_time <- function(origem.folder,samples, workloads, scenarios,file.name,metrics,hpa) {
