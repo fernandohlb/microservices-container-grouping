@@ -163,6 +163,12 @@ consolidate_table_by_time <- function(origem.folder,samples, workloads, scenario
         
         file_table$workload <- strtoi(workload)
         file_table$scenario <- scenario
+        file_table$qtd_microservices_pods <- switch(scenario,
+                                              "benchmark" = 8,
+                                              "all-in-one" = 1,
+                                              "by-stack" = 3,
+                                              "by-dependencies" = 6,
+                                                0)
         file_table$sample <- sample
         file_table$hpa <- hpa
         file_table$Time <- as.POSIXct(file_table$Time)

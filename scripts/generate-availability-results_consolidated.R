@@ -3,7 +3,7 @@ library("ggplot2")
 library(dplyr)
 source("results_functions.R")
 
-with_hpa = FALSE
+with_hpa = TRUE
 workloads <- c("300", "2400","4500")
 scenarios <- c("benchmark","all-in-one","by-stack","by-dependencies")
 samples <- 1:6

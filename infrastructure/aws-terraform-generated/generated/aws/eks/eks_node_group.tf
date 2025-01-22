@@ -1,4 +1,40 @@
-resource "aws_eks_node_group" "tfer--all-in-one" {
+# resource "aws_eks_node_group" "tfer--all-in-one" {
+#   ami_type       = "AL2_x86_64"
+#   capacity_type  = "ON_DEMAND"
+#   cluster_name   = "${aws_eks_cluster.tfer--microservices-container-grouping.name}"
+#   disk_size      = "50"
+#   instance_types = ["t3.xlarge"]
+
+#   labels = {
+#     namespace = "all-in-one"
+#   }
+
+#   node_group_name = "all-in-one"
+#   node_role_arn   = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415190108421000000009"
+#   # release_version = "1.22.17-20230513"
+
+#   scaling_config {
+#     desired_size = "1"
+#     max_size     = "1"
+#     min_size     = "1"
+#   }
+
+#   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
+
+#   taint {
+#     effect = "NO_SCHEDULE"
+#     key    = "namespace"
+#     value  = "all-in-one"
+#   }
+
+#   update_config {
+#     max_unavailable = "1"
+#   }
+
+#   version = "1.23"
+# }
+
+resource "aws_eks_node_group" "tfer--benchmark" {
   ami_type       = "AL2_x86_64"
   capacity_type  = "ON_DEMAND"
   cluster_name   = "${aws_eks_cluster.tfer--microservices-container-grouping.name}"
@@ -6,10 +42,10 @@ resource "aws_eks_node_group" "tfer--all-in-one" {
   instance_types = ["t3.xlarge"]
 
   labels = {
-    namespace = "all-in-one"
+    namespace = "benchmark"
   }
 
-  node_group_name = "all-in-one"
+  node_group_name = "benchmark"
   node_role_arn   = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415190108421000000009"
   # release_version = "1.22.17-20230513"
 
@@ -24,7 +60,7 @@ resource "aws_eks_node_group" "tfer--all-in-one" {
   taint {
     effect = "NO_SCHEDULE"
     key    = "namespace"
-    value  = "all-in-one"
+    value  = "benchmark"
   }
 
   update_config {
@@ -33,42 +69,6 @@ resource "aws_eks_node_group" "tfer--all-in-one" {
 
   version = "1.23"
 }
-
-# resource "aws_eks_node_group" "tfer--benchmark" {
-#   ami_type       = "AL2_x86_64"
-#   capacity_type  = "ON_DEMAND"
-#   cluster_name   = "${aws_eks_cluster.tfer--microservices-container-grouping.name}"
-#   disk_size      = "50"
-#   instance_types = ["t3.xlarge"]
-
-#   labels = {
-#     namespace = "benchmark"
-#   }
-
-#   node_group_name = "benchmark"
-#   node_role_arn   = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415190108421000000009"
-#   # release_version = "1.22.17-20230513"
-
-#   scaling_config {
-#     desired_size = "2"
-#     max_size     = "2"
-#     min_size     = "2"
-#   }
-
-#   subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
-
-#   taint {
-#     effect = "NO_SCHEDULE"
-#     key    = "namespace"
-#     value  = "benchmark"
-#   }
-
-#   update_config {
-#     max_unavailable = "1"
-#   }
-
-#   version = "1.23"
-# }
 
 # resource "aws_eks_node_group" "tfer--by-dependencies" {
 #   ami_type       = "AL2_x86_64"
@@ -208,42 +208,42 @@ resource "aws_eks_node_group" "tfer--kubecost" {
 #   version = "1.23"
 # }
 
-# resource "aws_eks_node_group" "tfer--monitoring" {
-#   ami_type       = "AL2_x86_64"
-#   capacity_type  = "ON_DEMAND"
-#   cluster_name   = "${aws_eks_cluster.tfer--microservices-container-grouping.name}"
-#   disk_size      = "20"
-#   instance_types = ["t3.medium"]
+resource "aws_eks_node_group" "tfer--monitoring" {
+  ami_type       = "AL2_x86_64"
+  capacity_type  = "ON_DEMAND"
+  cluster_name   = "${aws_eks_cluster.tfer--microservices-container-grouping.name}"
+  disk_size      = "20"
+  instance_types = ["t3.medium"]
 
-#   labels = {
-#     namespace = "monitoring"
-#   }
+  labels = {
+    namespace = "monitoring"
+  }
 
-#   node_group_name = "monitoring"
-#   node_role_arn   = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415190108421000000009"
-#   # release_version = "1.22.17-20230513"
+  node_group_name = "monitoring"
+  node_role_arn   = "arn:aws:iam::380285632927:role/prod-usp-icmc20220415190108421000000009"
+  # release_version = "1.22.17-20230513"
 
-#   scaling_config {
-#     desired_size = "1"
-#     max_size     = "1"
-#     min_size     = "1"
-#   }
+  scaling_config {
+    desired_size = "1"
+    max_size     = "1"
+    min_size     = "1"
+  }
 
-#   #subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
-#   subnet_ids = ["subnet-036215055911f9bd3"]
+  #subnet_ids = ["subnet-0312ec158c3ce9da3", "subnet-036215055911f9bd3", "subnet-07c048f336b37d2ef"]
+  subnet_ids = ["subnet-036215055911f9bd3"]
 
-#   taint {
-#     effect = "NO_SCHEDULE"
-#     key    = "namespace"
-#     value  = "monitoring"
-#   }
+  taint {
+    effect = "NO_SCHEDULE"
+    key    = "namespace"
+    value  = "monitoring"
+  }
 
-#   update_config {
-#     max_unavailable = "1"
-#   }
+  update_config {
+    max_unavailable = "1"
+  }
 
-#   version = "1.23"
-# }
+  version = "1.23"
+}
 
 # resource "aws_eks_node_group" "tfer--logging" {
 #   ami_type       = "AL2_x86_64"

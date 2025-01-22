@@ -1,0 +1,67 @@
+title Experiments script Flow
+
+
+participant Script
+participant "Front-end Microservice\n(NodeJS)" as Front-End
+participant "User-end Microservice\n(Go)" as User
+participant "Catalogue Microservice\n(Go)" as Catalogue
+participant "Cart Microservice\n(Java)" as Cart
+participant "Orders Microservice\n(Java)" as Orders
+participant "Payment Microservice\n(Go)" as Payment
+participant "Shipping Microservice\n(Java)" as Shipping
+participant "Queue Microservice\n(Java)" as Queue
+
+Script->Front-End:home page
+activate Front-End
+Front-End->Script:response
+deactivate Front-End
+Script->User:login
+activate User
+User->Script:response
+deactivate User
+Script->Front-End:Category
+activate Front-End
+Front-End->Catalogue:List Categories and itens
+activate Catalogue
+Catalogue->Front-End:response
+deactivate Catalogue
+Front-End->Script:response
+deactivate Front-End
+Script->Front-End:Item details
+activate Front-End
+Front-End->Catalogue:Get item detail
+activate Catalogue
+Catalogue->Front-End:response
+deactivate Catalogue
+Front-End->Script:response
+deactivate Front-End
+Script->Cart: Post item in the cart
+activate Cart
+Cart->Script: response
+deactivate Cart
+Script->Front-End: Access Cart page
+activate Front-End
+Front-End->Cart:Get item in the Cart
+activate Cart
+Cart->Front-End: response
+deactivate Cart
+Front-End->Script: response
+deactivate Front-End
+Script->Orders: Post Order
+activate Orders
+Orders->Payment: Post Payment
+activate Payment
+Payment->Orders: response
+deactivate Payment
+Orders->Shipping:Post Shipping
+activate Shipping
+Shipping->>Queue: Post shipping message
+Shipping->Orders: response
+deactivate Shipping
+Orders->Script: response
+deactivate Orders
+Script->Cart: Delete item in the cart
+activate Cart
+Cart->Script: response
+deactivate Cart
+
